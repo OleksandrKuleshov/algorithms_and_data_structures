@@ -91,6 +91,19 @@ public class SingleLinkedList<E> implements Iterable<E> {
     return true;
   }
 
+  public E remove(int index) {
+    if (index < 0 || index > size)
+      throw new IndexOutOfBoundsException();
+    E returnValue = null;
+    if (index == 0) {
+      returnValue = removeFirst();
+    } else {
+      Node<E> nodeBefore = getNode(index - 1);
+      returnValue = removeAfter(nodeBefore);
+    }
+    return returnValue;
+  }
+
   private E removeAfter(Node<E> node) {
     Node<E> temp = node.next;
     if (temp != null) {
