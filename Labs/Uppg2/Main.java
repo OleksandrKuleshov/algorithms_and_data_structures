@@ -9,10 +9,13 @@ public class Main {
     list.add(9);
     System.out.println(list);
     list.remove(0); // remove 5
+    System.out.println("tail now is: " + list.getTail());
     System.out.println(list);
     list.remove(3); // remove 9
+    System.out.println("tail now is: " + list.getTail());
     System.out.println(list);
     list.remove(1); // remove 7
+    System.out.println("tail now is: " + list.getTail());
     System.out.println(list);
     list.remove(55); // exception
 

@@ -43,10 +43,12 @@ public class SingleLinkedList<E> implements Iterable<E> {
   }
 
   private Node<E> head;
+  private Node<E> tail;
   private int size;
 
   public SingleLinkedList() {
     head = null;
+    tail = null;
     size = 0;
   }
 
@@ -55,12 +57,14 @@ public class SingleLinkedList<E> implements Iterable<E> {
     return new Itr(head);
   }
 
-  private void add(int index, E item) {
+  public void add(int index, E item) {
     if (index < 0 || index > size) {
       throw new IndexOutOfBoundsException();
     }
     if (index == 0) {
       addFirst(item);
+    } else if (index == size) {
+      addAfter(tail, item);
     } else {
       Node<E> node = getNode(index - 1);
       addAfter(node, item);
@@ -69,10 +73,14 @@ public class SingleLinkedList<E> implements Iterable<E> {
 
   public void addFirst(E data) {
     head = new Node<E>(data, head);
+    if (size == 0)
+      tail = head;
     size++;
   }
 
   private Node<E> getNode(int index) {
+    if (index == size - 1)
+      return tail;
     Node<E> node = head;
     for (int i = 0; i < index && node != null; i++) {
       node = node.next;
@@ -81,8 +89,12 @@ public class SingleLinkedList<E> implements Iterable<E> {
 
   }
 
+  public E getTail() {
+    return this.tail.data;
+  }
+
   private void addAfter(Node<E> node, E data) {
-    node.next = new Node<E>(data, node.next);
+    node.next = tail = new Node<E>(data, node.next);
     size++;
   }
 
@@ -99,6 +111,9 @@ public class SingleLinkedList<E> implements Iterable<E> {
       returnValue = removeFirst();
     } else {
       Node<E> nodeBefore = getNode(index - 1);
+      if (index == size - 1) {
+        tail = nodeBefore;
+      }
       returnValue = removeAfter(nodeBefore);
     }
     return returnValue;
