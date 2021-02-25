@@ -1,3 +1,5 @@
+package Labs.Uppg2;
+
 public class Main_uppg2 {
   public static void main(String[] args) {
     SingleLinkedList<String> list = new SingleLinkedList<>();

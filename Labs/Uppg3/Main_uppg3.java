@@ -1,3 +1,5 @@
+package Labs.Uppg3;
+
 import java.util.Iterator;
 
 public class Main_uppg3 {

@@ -1,3 +1,5 @@
+package Labs.Uppg4;
+
 import java.util.Queue;
 import java.util.LinkedList;
 
